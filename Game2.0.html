@@ -9,10 +9,10 @@
 			.displayed {
     				display: block;
     				margin-left: auto;
-    				margin-right: auto }		
+    				margin-right: auto }
+    			P { text-align: center }		
 		</style>		
 		<script type="text/JavaScript">
-			var island_name = "Mystery Island"
 			var score= 0;
 			var North= new Boolean(true);			
 			var East= new Boolean(true);
@@ -20,67 +20,69 @@
 			var West= new Boolean(true);
 			
 			function north_button_heart_of_island() {
-				alert("You are traveling into the heart of the island! Dense jungles, and dangerous terrian lays ahead.");
-				var message= "After entering you have to return because you lost your shoes and the terrian is too tough"
+				var north_alert= "You are traveling into the heart of the island! Dense jungles, and dangerous terrian lays ahead.";
+				var message= "After entering you have to return because you lost your shoes and the terrian is too tough.";
+				alert(north_alert);
 				alert(message);
-		
-			if (North == true) {
-				score= score + 5;
-				North = false;
+						
+				if (North == true) {
+					score= score + 5;
+					North = false;
 				
-			}
-			else if (North == false){
-				score= score + 0;			
-			}
-			}		
+				}
+				else if (North == false){
+					score= score + 0;			
+					}
+				}		
 			function east_button_down_beach() {
-				alert("You are heading down the beach towards a cluster of palm trees");
-				var message= "As you get closer you see the palm tree is full of coconuts"
+				var east_alert = "You are heading down the beach towards a cluster of palm trees.";				var message= "As you get closer you see the palm tree is full of coconuts";
+				alert(east_alert);				
 				alert(message);
 			
-			if (East == true) {
-				score= score + 5;
-				East = false;
+				if (East == true) {
+					score= score + 5;
+					East = false;
 				
-			}
-			else if (East == false){
-				score= score + 0;			
-			}
-			}
+				}
+				else if (East == false){
+					score= score + 0;			
+					}
+				}
 			function south_button_ocean() {
-				alert("You turn around and all you can see is the vast ocean with no boats in sight");
-				var message= "Not even the pure white sand and aqua blue can keep sadness from overwhelming because you know that you are alone"
+				var south_alert = "You turn around and all you can see is the vast ocean with no boats in sight.";
+				var message= "Not even the pure white sand and aqua blue water can keep sadness from taking over, because you know that you are alone";
+				alert(south_alert);
 				alert(message);
-			if (South == true) {
-				score= score + 5;
-				South = false;
+			
+				if (South == true) {
+					score= score + 5;
+					South = false;
 				
-			}
-			else if (South == false){
-				score= score + 0;			
-			}
-			}
+				}
+				else if (South == false){
+					score= score + 0;			
+					}
+				}
 			function west_button_beach() {
-				alert("After walking down the west side of the island you come across a"); 
-			if (West == true) {
-				score= score + 5;
-				West = false;
+				var message= "After walking down the west side of the island you come across a run down shack.";
+				alert(message); 
 				
-			}
-			else if (West == false){
-				score= score + 0;
-			}					
-			}
+				if (West == true) {
+					score= score + 5;
+					West = false;
+				}
+				else if (West == false){
+					score= score + 0;
+					}					
+				}
 			
 			function btn_click_score() {
 				alert(score)
-			}
-					
+			}		
 		</script>
-		
 	</head>
 	<body>
-		<textarea class="displayed" id="myarea">You were on vacation in the South Pacific when your small cruise ship developed a mechanical failure with the water intake and sunk! Only a few people survived along with your self. After floating in a life raft for two days you washed ashore on a deserted island. All you have in the life raft is a compass, and the time has come to find food and water. 	Decide whether you want to travel North, South East or West. Choose wisely because the island is uncharted, and if you get hurt no one coming to rescue you! 		--May the odds be ever in your favor! 		</textarea>
+		<textarea class="displayed" id="myarea">You were on vacation in the South Pacific when your small cruise ship developed a mechanical failure and sunk! Only a few people survived along with your self. After floating in a life raft for two days you washed ashore on a deserted island. All you have in the life raft is a compass. The time has come to find food and water. 	Decide whether you want to travel North, South East or West. Choose wisely because the island is uncharted. If you get hurt no one coming to your rescue! 		--May the odds be ever in your favor! 		</textarea>
 		
 		<img class="displayed" src = "http://www.art-and-home.net/media/10/a2079291247bcb0a2d5db4_m.jpg" width = "200" height="200" alt= "photo" />
 		<br>
@@ -99,7 +101,10 @@
 		<br>
 		<input class="displayed" type= "button"
 			value = "Score"
-			onclick= "btn_click_score();">			
+			onclick= "btn_click_score();">
+		<p>
+			Contact me via email! <a href= "mailto:skylarsenning@yahoo.com">Skylar Senning</a>
+		</p>			
 				
 	</body>
 </html>
