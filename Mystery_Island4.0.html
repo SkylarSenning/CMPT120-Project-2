@@ -138,12 +138,12 @@ Oct 14, 2012-->
 					East  = false; 
 					North = false;
 					South = true; 
-					east_btn_visibility()
+					east_btn_visibility();
 					game_score(); 								
 				}
 					else if (East === false){
 						updateText("You cannot travel this way! Go back you fool!");
-						east_btn_visibility() 
+						east_btn_visibility(); 
 						SCORE = false; 
 				}
 			}
@@ -185,13 +185,13 @@ Oct 14, 2012-->
 					else if (West === 2){
 						updateText(message_door)
 						West = 4; 
-						west_btn_visibility()
+						west_btn_visibility();
 						game_score();
 						West = false; 
 				}
 					else if (West === false){
 						updateText("You cannot travel this way! Go back you fool!");
-						west_btn_visibility()
+						west_btn_visibility();
 						SCORE = false;   
 				}
 			}
