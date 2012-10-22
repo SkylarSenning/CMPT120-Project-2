@@ -23,7 +23,7 @@ Oct 14, 2012-->
 				var EAST  		= 3;
 				var WEST  		= 4;
 				var path; 
-				
+										//Booleans for dirrection....starts with true...changes to false when you leave the game
 				var North 		= true;			
 				var East		= true;
 				var South		= true;
@@ -149,29 +149,30 @@ Oct 14, 2012-->
 			}
 			function south_button_ocean() {
 				var message = "You turn around and walk back to the edge of the water, all you can see is the vast ocean with no boats in sight.";
+				var message_box = "You open the box and find a map of the island! Above the box is a small window.";
 				if (South === true) {
 					gameLoc(SOUTH);
 					updateText(message);
-					South = false;
 					North = true;
 					West  = true;
 					East  = true;     
 					south_btn_visibility();
 					game_score();		    
+				}
+					else if (South === 2) {
+						updateText(message_box);
+						south_btn_visibility_box();
+						game_score();
+						South = 3; 
 				} 
-					else if (South === false){
-						updateText(message);
-						gameLoc(SOUTH);
-						North = true;
-						West  = true;
-						East  = true; 
-						south_btn_visibility();
-						SCORE = false; 		    
+					else if (South === 3){
+						updateText("You cannot travel this way! Go back you fool!"); 		    
 				}
 			}
+			
 			function west_button_beach() {
 				var message = "After walking down the west side of the island you come across a run down shack.";
-				var message_door = "You jiggle the door and enter slowly.";
+				var message_door = "You jiggle the door and enter slowly. After your eyes adjust you see a box on the SOUTH side of the room.";
 				if (West === true) {
 					gameLoc(WEST) 
 					updateText(message);
@@ -185,9 +186,12 @@ Oct 14, 2012-->
 					else if (West === 2){
 						updateText(message_door)
 						West = 4; 
-						west_btn_visibility();
+						west_btn_visibility_door();
 						game_score();
-						West = false; 
+						North  = false; 
+						West   = false;
+						South  = true;
+						South  = 2; 
 				}
 					else if (West === false){
 						updateText("You cannot travel this way! Go back you fool!");
@@ -198,9 +202,6 @@ Oct 14, 2012-->
 			
 			function gunPowder() {
 				updateLocation("you have gun powder!!! POW");
-			}
-			function move_counter(){
-				
 			}
 			
 			//HELP from ---http://www.w3schools.com/jsref/prop_style_visibility.asp to hide the buttons  
@@ -216,6 +217,12 @@ Oct 14, 2012-->
                 document.getElementById("btn_EAST").style.visibility="visible";
                 document.getElementById("btn_SOUTH").style.visibility="visible"; 
 			}
+			function south_btn_visibility_box() {
+				document.getElementById("btn_NORTH").style.visibility="hidden";
+                document.getElementById("btn_WEST").style.visibility="hidden";
+                document.getElementById("btn_EAST").style.visibility="hidden";
+                document.getElementById("btn_SOUTH").style.visibility="hidden";
+			}
 			function east_btn_visibility() {
 				document.getElementById("btn_NORTH").style.visibility="hidden";
                 document.getElementById("btn_WEST").style.visibility="hidden";
@@ -228,8 +235,12 @@ Oct 14, 2012-->
                 document.getElementById("btn_EAST").style.visibility="hidden";
                 document.getElementById("btn_SOUTH").style.visibility="visible";
 			}
-			
-			
+			function west_btn_visibility_door(){
+				document.getElementById("btn_NORTH").style.visibility="hidden";
+                document.getElementById("btn_WEST").style.visibility="visible";
+                document.getElementById("btn_EAST").style.visibility="hidden";
+                document.getElementById("btn_SOUTH").style.visibility="visible";
+ 			}
 			
 			function updateText(message){
 				message = message + " [" + gameLocation + "]";
