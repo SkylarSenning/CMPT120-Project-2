@@ -1,0 +1,283 @@
+<!DOCTYPE HTML>
+<!-- Skylar N. Senning     Collaborators: Joe ArcherIntroduction to ProgrammingProject 3
+Oct 14, 2012-->
+<html>		
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<title>Mystery Island</title>
+		<style>
+			textarea#txtGame { width: 300px; height: 160px; float: center; }
+			.align-center { float: center;}
+			.displayed {
+    				display: block;
+    				margin-left: auto;
+    				margin-right: auto }
+    			P { text-align: center }		
+		</style>		
+			<script type="text/JavaScript">
+				var score 		= 0;
+				var SCORE       = true; 
+				
+				var NORTH 		= 1;	//Global varialbes to figure out dirrection 
+				var SOUTH 		= 2;
+				var EAST  		= 3;
+				var WEST  		= 4;
+				var path; 
+				
+				var North 		= true;			
+				var East		= true;
+				var South		= true;
+				var West		= true;
+				var gameLocation = 0;
+							
+			function game_score() {  //function for score, updates 5 each time
+				if (SCORE === true){
+					score = score + 5;
+					updateText("Score: " + score); 
+				}
+			}
+										
+			
+			function btn_go_click() {	//IF-ELSE to figure out user input 
+				var txt = document.getElementById("txtCommand");
+							
+				if ((txt.value === "N") || (txt.value === "n")) {
+					north_button_heart_of_island()
+				}
+				else if ((txt.value === "NE") || (txt.value === "ne")){ 
+					north_east_path()
+				}
+				else if ((txt.value === "NW") || (txt.value === "nw")){ 
+					north_west_cabin()
+				}
+				else if ((txt.value === "S") || (txt.value === "s")){ 
+					south_button_ocean()
+				}
+				else if ((txt.value === "E") || (txt.value === "e")){
+					east_button_down_beach()
+				}
+				else if ((txt.value === "W") || (txt.value === "w")){
+					west_button_beach()
+				}
+				else {
+					updateText("Please enter a valid command: N, S, E, W, n, s, e, w!"); 
+				}
+			}
+			function gameLoc(path) {  //Location from lab to track users game location
+       			if (path === 1) {
+          			updateLocation("Heading North");
+       			} else if (path === 2) {
+          			updateLocation("Heading South");          
+       			} else if (path === 3) {
+          			updateLocation("Heading East");
+				} else if (path === 4) {
+					updateLocation("Heading West"); 
+				} else { 
+					updateLocation("NOT A VALID PATH! GO BACK!");
+				}
+			}
+			function updateLocation(txt){ 	//Updates the way that you are traveling in the game			
+				var ta = document.getElementById("txtLocation");
+           		ta.value = txt + "\n" + ta.value;
+        	}
+
+			//USED http://brugbart.com/Tutorials/javascript-if-else-elseif TO CREATE A BASIC MOVEMENT IN THE GAME. NUMBERS REFER TO DIFFERENT (IF/ELSE) STATEMENTS. THE BOOLEANS START AS TRUE SO THEY ONCE YOU DO TO A DIFFERENT LOCATION AND RETURN YOU START WHERE YOU LEFT OFF. ADDED MANY 
+			
+			function north_button_heart_of_island() {
+				var message= "You are traveling into the heart of the island! Dense jungles, and dangerous terrian lays ahead.";
+				var message_path = "You find a path which leads into the island....maybe you are not alone!";			
+				var message_mtn  = "You are slowly climbing up a very large mountain, there was no other way.";
+				var message_cave = "While climbing you come across a small cave! You find a back pack.....";
+				var message_topmtn = "Surveying the island you see a helicopter pad on a few miles away..RUN!"; 
+				if (North === true) {		
+					gameLocation = 1; 
+					gameLoc(NORTH);					
+					updateText(message);
+					North = false;
+					East  = false;
+					West  = false;
+					North = 1;
+					north_btn_visibility();
+					game_score();		    
+				} 
+					else if (North === 1){
+						gameLoc(NORTH);
+						updateText(message_path);
+						North = 2;
+						north_btn_visibility();
+						game_score(); 	      
+				}
+					else if (North === 2 ){
+						gameLoc(NORTH);
+						updateText(message_mtn);
+						North = 3;
+						north_btn_visibility();
+						game_score(); 	      
+				} 
+					else if (North === 3){
+						gameLoc(NORTH);
+						updateText(message_cave);
+						gunPowder();
+						//North = 4;
+						north_btn_visibility();
+						game_score();
+						North = false;  		  	  
+				}
+				  	else if (North === false) {
+						updateText("you cannot travel this way! Go back you fool!");
+				 		north_btn_visibility();
+						SCORE = FALSE; 		  
+				}				
+				
+			}
+			function east_button_down_beach() {
+				var message = "You are heading down the beach towards a cluster of palm trees.";
+				if (East === true) { 
+					updateText(message);
+					gameLoc(EAST);
+					East  = false; 
+					North = false;
+					South = true; 
+					east_btn_visibility()
+					game_score(); 								
+				}
+					else if (East === false){
+						updateText("You cannot travel this way! Go back you fool!");
+						east_btn_visibility() 
+						SCORE = false; 
+				}
+			}
+			function south_button_ocean() {
+				var message = "You turn around and walk back to the edge of the water, all you can see is the vast ocean with no boats in sight.";
+				if (South === true) {
+					gameLoc(SOUTH);
+					updateText(message);
+					South = false;
+					North = true;
+					West  = true;
+					East  = true;     
+					south_btn_visibility();
+					game_score();		    
+				} 
+					else if (South === false){
+						updateText(message);
+						gameLoc(SOUTH);
+						North = true;
+						West  = true;
+						East  = true; 
+						south_btn_visibility();
+						SCORE = false; 		    
+				}
+			}
+			function west_button_beach() {
+				var message = "After walking down the west side of the island you come across a run down shack.";
+				var message_door = "You jiggle the door and enter slowly.";
+				if (West === true) {
+					gameLoc(WEST) 
+					updateText(message);
+					West  = false; 
+					North = false; 
+					West  = 2;
+					South = true;
+					west_btn_visibility()
+					game_score();    				
+				}
+					else if (West === 2){
+						updateText(message_door)
+						West = 4; 
+						west_btn_visibility()
+						game_score();
+						West = false; 
+				}
+					else if (West === false){
+						updateText("You cannot travel this way! Go back you fool!");
+						west_btn_visibility()
+						SCORE = false;   
+				}
+			}
+			
+			function gunPowder() {
+				updateLocation("you have gun powder!!! POW");
+			}
+			function move_counter(){
+				
+			}
+			
+			//HELP from ---http://www.w3schools.com/jsref/prop_style_visibility.asp to hide the buttons  
+			function north_btn_visibility() {  
+				document.getElementById("btn_NORTH").style.visibility="visible";
+                document.getElementById("btn_WEST").style.visibility="hidden";
+                document.getElementById("btn_EAST").style.visibility="hidden";
+                document.getElementById("btn_SOUTH").style.visibility="visible";
+			}
+			function south_btn_visibility() {
+				document.getElementById("btn_NORTH").style.visibility="visible";
+                document.getElementById("btn_WEST").style.visibility="visible";
+                document.getElementById("btn_EAST").style.visibility="visible";
+                document.getElementById("btn_SOUTH").style.visibility="visible"; 
+			}
+			function east_btn_visibility() {
+				document.getElementById("btn_NORTH").style.visibility="hidden";
+                document.getElementById("btn_WEST").style.visibility="hidden";
+                document.getElementById("btn_EAST").style.visibility="visible";
+                document.getElementById("btn_SOUTH").style.visibility="visible"; 
+			}
+			function west_btn_visibility() {
+				document.getElementById("btn_NORTH").style.visibility="hidden";
+                document.getElementById("btn_WEST").style.visibility="visible";
+                document.getElementById("btn_EAST").style.visibility="hidden";
+                document.getElementById("btn_SOUTH").style.visibility="visible";
+			}
+			
+			
+			
+			function updateText(message){
+				message = message + " [" + gameLocation + "]";
+				var ta = document.getElementById("txtGame");
+           		ta.value = message + "\n" + ta.value;
+        	}			
+		</script>
+	</head>
+	<body>
+		<textarea class="displayed" id = "txtGame">You were on vacation in the South Pacific when your small cruise ship developed a mechanical failure and sunk! Only a few people survived along with your self. After floating in a life raft for two days you washed ashore on a deserted island. All you have in the life raft is a compass. The time has come to find food and water. 	Decide whether you want to travel North, South East or West. Choose wisely because the island is uncharted. If you get hurt no one coming to your rescue! 		--May the odds be ever in your favor! 		</textarea>
+		<textarea class = "displayed" id = "txtLocation">
+		</textarea> 
+		<br>
+		<p>Enter Command</p>
+		<input class= "displayed" type= "text" id= "txtCommand">
+		<input class= "displayed" type= "button"
+				value= "Go"
+				onclick= "btn_go_click();">
+		<br>
+		<img class="displayed" src = "http://www.art-and-home.net/media/10/a2079291247bcb0a2d5db4_m.jpg" width = "200" height="200" alt= "photo" />
+		<br>
+			<input class="displayed" type= "button"
+				value= "North"
+				onclick= "north_button_heart_of_island(NORTH);"
+				id= "btn_NORTH">
+								 
+			<input class="displayed" type= "button"
+				value= "East"
+				onclick= "east_button_down_beach(EAST);"
+				id= "btn_EAST">
+				
+			<input class="displayed" type= "button"
+				value= "South"
+				onclick= "south_button_ocean(SOUTH);"
+				id= "btn_SOUTH">
+				
+			<input class="displayed" type= "button"
+				value= "West"
+				onclick= "west_button_beach(WEST);"
+				id= "btn_WEST">
+		<br>
+			<input class="displayed" type= "button"
+				value = "Score"
+				onclick= "btn_click_score();">
+			
+		<p>
+			Contact me via email! <a href= "mailto:skylarsenning@yahoo.com">Skylar Senning</a>
+		</p>			
+				
+	</body>
+</html>
