@@ -111,17 +111,17 @@ Oct 14, 2012-->
 					}
 						else if (North === 2 ){
 							var message_mtn  = "You are slowly climbing up a very large mountain, there was no other way.";
-							updateText(message_mtn);
 							gameLoc(NORTH);
+							updateText(message_mtn);
+							North = 3;
 							north_btn_visibility();
-							score = score+5; 
-							North = 3;	      
+							score = score+5; 	      
 						} 
 							else if (North === 3){
 								var message_cave = "While climbing you come across a small cave! You find a back pack.....";
+								gameLoc(NORTH);
 								updateText(message_cave);
 								gunPowder();
-								gameLoc(NORTH);
 								//North = 4;
 								north_btn_visibility();
 								score = score+5;
@@ -129,25 +129,27 @@ Oct 14, 2012-->
 							}
 				  				else if (North === false) {
 									updateText("you cannot travel this way! Go back you fool!");
-				 					north_btn_visibility(); 		  
+				 					north_btn_visibility();
+									SCORE = FALSE; 		  
 								}				
 				
 			}
 			
 			function east_button_down_beach() {	//TAKES YOU DOWN ONE SIDE OF THE BEACH
-				if (East === true) {
-					var message = "You are heading down the beach towards a cluster of palm trees.";
+				var message = "You are heading down the beach towards a cluster of palm trees.";
+				if (East === true) { 
 					updateText(message);
 					gameLoc(EAST);
-					east_btn_visibility();
-					score = score+5; 
 					East  = false; 
 					North = false;
-					South = true; 								
+					South = true; 
+					east_btn_visibility();
+					score = score+5; 								
 				}
 					else if (East === false){
 						updateText("You cannot travel this way! Go back you fool!");
-						east_btn_visibility();  
+						east_btn_visibility(); 
+						SCORE = false; 
 				}
 			}
 			
@@ -155,14 +157,13 @@ Oct 14, 2012-->
 				
 				if (South === true) {
 					var message = "You turn around and walk back to the edge of the water, all you can see is the vast ocean with no boats in sight.";
-					updateText(message);
 					gameLoc(SOUTH);
-					south_btn_visibility();
-					score = score+5;
+					updateText(message);
 					North = true;
 					West  = true;
 					East  = true;     
-							    
+					south_btn_visibility();
+					score = score+5;		    
 				}
 					else if (South === 2) {
 						var message_box = "You open the box and find a map of the island! Above the box is a small window.";
@@ -171,8 +172,7 @@ Oct 14, 2012-->
 						gameLoc(SOUTH);
 						score = score+5;
 						South = 3;
-						
-							alert("End of project 3...more locations to come! Please refresh browser"); 
+						alert("End of project 3...more locations to come! Please refresh browser"); 
 					} 
 						else if (South === 3){
 							updateText("You cannot travel this way! Go back you fool!"); 		    
