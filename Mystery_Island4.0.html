@@ -32,11 +32,11 @@ Oct 14, 2012-->
 				var WEST  		= 4;
 				var path; 
 										//Booleans for dirrection....starts with true...changes to false when you leave the game
-				var North 		= true;			
-				var East		= true;
-				var South		= true;
-				var West		= true;
-				var gameLocation = 0;
+				var location_North 		= true;			
+				var location_East		= true;
+				var location_South		= true;
+				var location_West		= true;
+				var gameLocation 		= 0;
 							
 			function btn_click_score() {  //function for score, updates 5 each time
 				
@@ -86,7 +86,7 @@ Oct 14, 2012-->
 			
 			function north_button_heart_of_island() { 
 				
-				if (North === true) {
+				if (location_North === true) {
 					var message= "You are traveling into the heart of the island! Dense jungles, and dangerous terrian lays ahead.";	
 					updateText(message);
 					gameLoc(NORTH);
@@ -94,30 +94,29 @@ Oct 14, 2012-->
 					gameLocation = 1;
 					score = score+5; 
 					//North = false;
-					East  = false;
-					West  = false;
-					North = 1;
-					
-							    
+					location_East  = false;
+					location_West  = false;
+					location_North = 1;
+								    
 				} 
-					else if (North === 1){ //TRAVELING INTO THE ISLAND AWAY FROM THE SHORE
+					else if (location_North === 1){ //TRAVELING INTO THE ISLAND AWAY FROM THE SHORE
 						var message_path = "You find a path which leads into the island....maybe you are not alone!";
 						updateText(message_path);		
 						gameLoc(NORTH);
 						north_btn_visibility();
 						score = score+5;
-						North = 2;
+						location_North = 2;
 						 	      
 					}
-						else if (North === 2 ){
+						else if (location_North === 2 ){
 							var message_mtn  = "You are slowly climbing up a very large mountain, there was no other way.";
 							updateText(message_mtn);
 							gameLoc(NORTH);
 							north_btn_visibility();
 							score = score+5; 
-							North = 3;	      
+							location_North = 3;	      
 						} 
-							else if (North === 3){
+							else if (location_North === 3){
 								var message_cave = "While climbing you come across a small cave! You find a back pack.....";
 								updateText(message_cave);
 								gunPowder();
@@ -125,96 +124,98 @@ Oct 14, 2012-->
 								//North = 4;
 								north_btn_visibility();
 								score = score+5;
-								North = false;  		  	  
+								location_North = false;  		  	  
 							}
-				  				else if (North === false) {
+				  				else if (location_North === false) {
 									updateText("you cannot travel this way! Go back you fool!");
-				 					north_btn_visibility(); 		  
+				 					false_visibility(); 		  
 								}				
 				
 			}
 			
 			function east_button_down_beach() {	//TAKES YOU DOWN ONE SIDE OF THE BEACH
-				if (East === true) {
+				if (location_East === true) {
 					var message = "You are heading down the beach towards a cluster of palm trees.";
 					updateText(message);
 					gameLoc(EAST);
 					east_btn_visibility();
 					score = score+5; 
-					East  = false; 
-					North = false;
-					South = true; 								
+					location_East  = false; 
+					location_North = false;
+					location_South = true;
+					location_West  = true;  								
 				}
-					else if (East === false){
+					else if (location_East === false){
 						updateText("You cannot travel this way! Go back you fool!");
-						east_btn_visibility();  
+						false_visibility();  
 				}
 			}
 			
 			function south_button_ocean() { //TAKES YOU BACK TO SHORE 
 				
-				if (South === true) {
+				if (location_South === true) {
 					var message = "You turn around and walk back to the edge of the water, all you can see is the vast ocean with no boats in sight.";
 					updateText(message);
 					gameLoc(SOUTH);
 					south_btn_visibility();
 					score = score+5;
-					North = true;
-					West  = true;
-					East  = true;     
+					location_North = true;
+					location_West  = true;
+					location_East  = true;     
 							    
 				}
-					else if (South === 2) {
+					else if (location_South === 2) {
 						var message_box = "You open the box and find a map of the island! Above the box is a small window.";
 						updateText(message_box);
 						south_btn_visibility_box();
 						gameLoc(SOUTH);
 						score = score+5;
-						South = 3;
+						location_South = 3;
 						
 							alert("End of project 3...more locations to come! Please refresh browser"); 
 					} 
-						else if (South === 3){
-							updateText("You cannot travel this way! Go back you fool!"); 		    
+						else if (location_South === 3){
+							updateText("You cannot travel this way! Go back you fool!");
+							false_visibility(); 		    
 						}
 			}
 			
 			function west_button_beach() {	//TAKES YOU DOWN OTHER SIDE OF BEACH TO A SHACK
 
-				if (West === true) {
+				if (location_West === true) {
 					var message = "After walking down the west side of the island you come across a run down shack.";
 					gameLoc(WEST); 
 					updateText(message);
-					West  = false; 
-					North = false; 
-					West  = 2;
-					South = true;
+					location_West  = false; 
+					location_North = false; 
+					location_West  = 2;
+					location_South = true;
 					west_btn_visibility()
 					score = score+5;   				
 				}
-					else if (West === 2){
+					else if (location_West === 2){
 						var message_door = "You jiggle the door, push, and enter slowly.";
 						updateText(message_door);
 						gameLoc(WEST); 
 						west_btn_visibility_door();
 						score = score+5;
-						North  = false; 
-						South  = true;
-						West   = 3;  
+						location_North  = false; 
+						location_South  = true;
+						location_West   = 3;  
 					}
-						else if (West === 3){
+						else if (location_West === 3){
 							var message_room_west = "After your eyes adjust to the dim lighting you see a box on the SOUTH side of the room."
 							updateText(message_room_west);
 							west_btn_visibility_room();
 							gameLoc(WEST);
 							score = score+5; 
-							South = 2; 
-							West = false; 
+							location_South = 2; 
+							location_West = false; 
 						}
-							else if (West === false){
+							else if (location_West === false){
 								updateText("You cannot travel this way! Go back you fool!");
-								west_btn_visibility();
-								SCORE = false;   
+								false_visibility();
+								   
 							}
 			}
 			
@@ -263,6 +264,12 @@ Oct 14, 2012-->
 				document.getElementById("btn_NORTH").style.visibility="hidden";
                 document.getElementById("btn_WEST").style.visibility="hidden";
                 document.getElementById("btn_EAST").style.visibility="hidden";
+                document.getElementById("btn_SOUTH").style.visibility="visible";
+ 			}
+			function false_visibility(){
+				document.getElementById("btn_NORTH").style.visibility="visible";
+                document.getElementById("btn_WEST").style.visibility="visible";
+                document.getElementById("btn_EAST").style.visibility="visible";
                 document.getElementById("btn_SOUTH").style.visibility="visible";
  			}
 
