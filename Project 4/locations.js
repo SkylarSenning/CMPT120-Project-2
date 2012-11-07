@@ -174,7 +174,7 @@ function raft() {
 			
 //HELP from ---http://www.w3schools.com/jsref/prop_style_visibility.asp to hide the buttons
 function init_visibility() {  
-	document.getElementById("btn_NORTH").style.visibility="hidden";
+	document.getElementById("btn_NORTH").style.visibility="visible";
     document.getElementById("btn_WEST").style.visibility="hidden";
     document.getElementById("btn_EAST").style.visibility="hidden";
     document.getElementById("btn_SOUTH").style.visibility="visible";
