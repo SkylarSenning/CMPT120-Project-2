@@ -59,6 +59,7 @@ function north_raft(){
 	raft();
 	north_btn_visibility_raft();
 	gameLoc(NORTH);
+	score = score+5;
 }
 function east_button_down_beach() {	
 	var message = "East part of the beach near a cluster of palm trees. Looking NORTH you see an odd shape.";
@@ -86,6 +87,7 @@ function west_gunpowder() {
 	gunPowder();
 	west_btn_visibility_gunpowder();
 	gameLoc(NORTH);
+	score = score+5;
 }							
 function west_button_beach() {	
 	var message = "After walking down the west side of the island you come across a run down shack.";
@@ -128,19 +130,20 @@ function gunPowder() {
 	if(inventory_gunpowder === false){
 		updateText("In the backpack is gunpowder!....take gunpowder");
 		updateText("You have gunpowder.")
-		inventory_gunpowder = true; 
-		
-		}
-			else if (inventory_gunpowder === true){
-				updateText("You already have gunpowder!");
+		inventory_gunpowder = true;
+		score = score+5; 
+	}
+		else if (inventory_gunpowder === true){
+		updateText("You already have gunpowder!");
 		}
 }
 function map() {
 	if(inventory_map === false){
 		updateText("You have found a map of the island!");
 		inventory_map = true;
+		score = score+5;
 	}
-			else if (inventory_map === true){
+		else if(inventory_map === true){
 				updateText("You already have found the map!");
 		}
 }
@@ -148,18 +151,21 @@ function flaregun() {
 	if(inventory_flaregun === false){
 		updateText("You have a flare gun!");
 		inventory_flaregun = true;
+		score = score+5;
 	}
 }
 function rope() {
 	if(inventory_rope === false){
 		updateText("You have 100ft of rope!");
 		inventory_rope = true;
+		score = score+5;
 	}
 }
 function raft() {
 	if(inventory_raft === false){
 		updateText("You have found a life raft! Must have washed up onto the beach from your ship.");
 		inventory_raft = true;
+		score = score+5;
 		}
 			else if (inventory_raft === true){
 				updateText("You already have the raft!");
