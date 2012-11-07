@@ -1,7 +1,38 @@
 //game_location.js
 
+function btn_go_click() { //IF-ELSE to figure out user input 
+	var txt	= document.getElementById("txtCommand");
+							
+	if ((txt.value === "N") || (txt.value === "n")) {
+		direction_switch(north);
+	}
+	else if ((txt.value === "S") || (txt.value === "s")){ 
+		direction_switch(south);
+	}
+	else if ((txt.value === "E") || (txt.value === "e")){
+		direction_switch(east);
+	}
+	else if ((txt.value === "W") || (txt.value === "w")){
+		direction_switch(west);
+	}
+	else if ((txt.value === "Help") || (txt.value === "help")){
+		game_help();
+	}
+	else if ((txt.value === "inventory") || (txt.value === "Inventory")){
+		player_inventory();
+	} 
+	else {
+	updateText("Please enter a valid command: N, S, E, W, n, s, e, w, inventory, Inventory"); 
+	}
+}				
+function game_help() {
+	var message = "Possible commands: N, S, E, W, n, s, e, w, inventory, Inventory";
+	updateText(message); 
+}
+
 //Instead of linking location together through seperate functions switch-case is used in this project. Each case relates to a function that stores the message and other important functions related to game play. 
-//
+//Used notes from lab to make one switch-case to handle all the functions and updates to the text area. Then made a switch-case inside a switch case to change locations throughout the game. 
+
 function location_switch(area) {
 	switch(area) {
     	case "Jungle"      		: north_button_heart_of_island();
@@ -27,8 +58,6 @@ function location_switch(area) {
 		case "Shack_Door"		: west_door();
 			break;
 		case "Shack_Room"		: west_room();
-			break;
-		case "False"			: wrong_way();
 			break;
 		case "Start"			: init();
 			break;
@@ -132,7 +161,7 @@ function direction_switch(travel) {
 
 				}
 		break; 
-		}
+	}
 }
 
 function gameLoc(path) { //Location from lab to track users game location

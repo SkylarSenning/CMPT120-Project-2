@@ -6,8 +6,8 @@ November 6, 2012-->
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<title>Mystery Island</title>
 		<style>
-			body {
-        		text-align:center;
+			body{	
+				text-align:center;
 				background-image:url(http://1.bp.blogspot.com/-mAVeuYzfvGE/Tjr6LVnCOTI/AAAAAAAABDQ/IWimpi3zliI/s1600/tropical-island.jpg);
 				color: white;
 				font-family: Courier New;
@@ -20,63 +20,35 @@ November 6, 2012-->
     				display: block;
     				margin-left: auto;
     				margin-right: auto }
-    			P { text-align: center }		
+    			P { text-align: center }
 		</style>
-			<script type="text/JavaScript" src= "game_logic.js"></script>
-			<script type="text/JavaScript" src= "locations.js"></script>		
-			<script type="text/JavaScript"> 
-				var score 		= 0;	//Score variable
+		<script type="text/JavaScript" src= "game_logic.js"></script>
+		<script type="text/JavaScript" src= "locations.js"></script>		
+		<script type="text/JavaScript"> 
+			var score 		= 0;	//Score variable
 
-				var inventory_gunpowder 	= false;  //Items found in game
-				var inventory_map 			= false;
-				var	inventory_flaregun 		= false;
-				var inventory_rope			= false;
-				var inventory_raft			= false;
+			var inventory_gunpowder 	= false;  //Items found in game
+			var inventory_map 			= false;
+			var	inventory_flaregun 		= false;
+			var inventory_rope			= false;
+			var inventory_raft			= false;
 				
-				var game_inventory			= false; 
+			var game_inventory			= false; 
 				
-				var NORTH 		= 1;	//Global varialbes to figure out dirrection 
-				var SOUTH 		= 2;
-				var EAST  		= 3;
-				var WEST  		= 4;
-				var path;
-				var player_location    = "Jungle";
+			var NORTH 		= 1;	//Global varialbes to figure out dirrection 
+			var SOUTH 		= 2;
+			var EAST  		= 3;
+			var WEST  		= 4;
+			var path;
+			var player_location    = "Jungle";
 			  
-				var north = 1; 
-				var south = 2;
-				var east  = 3; 
-				var west  = 4; 
+			var north = 1; //globals for switch-case
+			var south = 2;
+			var east  = 3; 
+			var west  = 4; 
 				
-				var gameLocation 		= 0;
-			
-			function btn_go_click() { //IF-ELSE to figure out user input 
-				var txt	= document.getElementById("txtCommand");
-							
-				if ((txt.value === "N") || (txt.value === "n")) {
-					direction_switch(north);
-				}
-				else if ((txt.value === "S") || (txt.value === "s")){ 
-					direction_switch(south);
-				}
-				else if ((txt.value === "E") || (txt.value === "e")){
-					direction_switch(east);
-				}
-				else if ((txt.value === "W") || (txt.value === "w")){
-					direction_switch(west);
-				}
-				else if ((txt.value === "Help") || (txt.value === "help")){
-					game_help();
-				}
-				else if ((txt.value === "take") || (txt.value === "Take")){ 
-				}  
-				else {
-					updateText("Please enter a valid command: N, S, E, W, n, s, e, w, take gunpowder, Take Gunpowder"); 
-				}
-			}				
-			function game_help() {
-				var message = "Possible commands: N, S, E, W, n, s, e, w, take gunpowder, Take Gunpowder";
-				updateText(message); 
-			} 
+			var gameLocation 		= 0;
+			 
 			function updateText(message){//Updates text area
 				message = message + " [" + gameLocation + "]";
 				var ta = document.getElementById("txtGame");
@@ -91,10 +63,8 @@ November 6, 2012-->
 	</head>
 	<body onload = "init();">
 		<h1>Mystery Island</h1>
-		<textarea cols="70" rows="11" id = "txtGame" >
-		</textarea>
-		<textarea class = "displayed" id = "txtLocation">
-		</textarea> 
+		<textarea cols="70" rows="11" id = "txtGame" ></textarea>
+		<textarea class = "displayed" id = "txtLocation"></textarea> 
 		<br>
 		<p>Enter Command</p>
 		<input class = "align-center" type= "button"

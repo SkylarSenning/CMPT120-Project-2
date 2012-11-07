@@ -86,7 +86,7 @@ function south_box(){
 function west_gunpowder() {
 	gunPowder();
 	west_btn_visibility_gunpowder();
-	gameLoc(NORTH);
+	gameLoc(WEST);
 	score = score+5;
 }							
 function west_button_beach() {	
@@ -129,12 +129,15 @@ function player_inventory() {
 function gunPowder() {
 	if(inventory_gunpowder === false){
 		updateText("In the backpack is gunpowder!....take gunpowder");
+		gameLoc(WEST);
 		updateText("You have gunpowder.")
+		gameLoc(WEST);
 		inventory_gunpowder = true;
 		score = score+5; 
 	}
 		else if (inventory_gunpowder === true){
-		updateText("You already have gunpowder!");
+			updateText("You already have gunpowder!");
+			gameLoc(WEST)
 		}
 }
 function map() {
