@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<!-- Skylar N. Senning     Collaborators: Joe ArcherIntroduction to ProgrammingProject 4
+November 6, 2012-->
+<html>		
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<title>Mystery Island</title>
+		<style>
+			body{	
+				text-align:center;
+				background-image:url(http://1.bp.blogspot.com/-mAVeuYzfvGE/Tjr6LVnCOTI/AAAAAAAABDQ/IWimpi3zliI/s1600/tropical-island.jpg);
+				color: white;
+				font-family: Courier New;
+				font-weight: bold;  
+			}
+			
+			textarea#txtGame { font-family: Courier New; font-size: 12pt; font-weight: bold; }
+			.align-center { float: center;}
+			.displayed {
+    				display: block;
+    				margin-left: auto;
+    				margin-right: auto }
+    			P { text-align: center }
+		</style>
+		<script type="text/JavaScript" src= "project_5_Logic.js"></script>
+		<script type="text/JavaScript" src= "locations_project5.js"></script>		
+		<script type="text/JavaScript"> 
+			var score 		= 0;	//Score variable
+			var moveCount	= 0;
+			
+			var inventory_gunpowder 	= false;  //Items found in game
+			var inventory_map 			= false;
+			var	inventory_flaregun 		= false;
+			var inventory_rope			= false;
+			var inventory_raft			= false;
+			 	
+			var game_inventory			= false; 
+			
+				
+			var NORTH 		= 1;	//Global varialbes to figure out dirrection 
+			var SOUTH 		= 2;
+			var EAST  		= 3;
+			var WEST  		= 4;
+			 
+			var north = 0; //globals for switch-case
+			var south = 1;
+			var east  = 2; 
+			var west  = 3; 
+			
+				
+			var area = 12;
+			//var currentLocation = 0
+			//var direction = 0
+			 
+			function updateText(message){//Updates text area
+				message = message + " [" + area + "]";
+				var ta = document.getElementById("txtGame");
+           		ta.value = message + "\n" + ta.value;
+        	}
+			function updateLocation(txt){ //Updates the way that you are traveling in the game			
+				var ta = document.getElementById("txtLocation");
+           		ta.value = txt + "\n" + ta.value;
+        	}
+			
+		</script>
+	</head>
+	<body onload = "init();">
+		<h1>Mystery Island</h1>
+		<textarea cols="70" rows="11" id = "txtGame" ></textarea>
+		<textarea class = "displayed" id = "txtLocation"></textarea> 
+		<br>
+		<p>Enter Command</p>
+		<input class = "align-center" type= "button"
+				value = "Inventory"
+				onclick= "player_inventory();">
+		<br>
+		<input type= "button"
+				value = "Score"
+				onclick= "btn_click_score();">
+		
+		<input  type= "text" id= "txtCommand">
+		
+		<input  type= "button"
+				value= "Go"
+				onclick= "btn_go_click();">
+		<br>
+			
+		<input type= "button"
+			value= "North"
+			onclick= "move(north);"
+			id= "btn_NORTH">
+			
+		<br>
+		<br>
+		<input type= "button"
+			value= "West"
+			onclick= "move(west);"
+			id= "btn_WEST">
+								 
+		<input type= "button"
+			value= "East"
+			onclick= "move(east);"
+			id= "btn_EAST">
+			
+		<br>
+		<br>
+			
+		<input type= "button"
+			value= "South"
+			onclick= "move(south);"
+			id= "btn_SOUTH">
+				
+		<p>
+			Contact me via email! <a href= "mailto:skylarsenning@yahoo.com">Skylar Senning</a>
+			<br>
+			<img src="game_map.jpg" id="map" align="center" width="500" height="400"/>
+		</p>			
+				
+	</body>
+</html>
