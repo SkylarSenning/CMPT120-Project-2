@@ -10,170 +10,120 @@ function init(){  //on load this brings up the start text..
 	start();
 }
 
-//The following functions have messages for all the locations in the game. The switch-case calls upon these function when you are at each of these locations in the game
+//The following functions have messages for all the locations in the game... The switch-case calls upon these function when you are at each of these locations in the game. I used to location prototype to create 13 different instances of location. all the locations are stored in the locations array 
 
+var locations = new Array();
 
 function start(){
-	var message = " " + " " + "You were on vacation in the South Pacific when your small cruise ship developed a mechanical failure and sunk! Only a few people survived along with your self. After floating in a life raft for two days you washed ashore on a deserted island. All you have in the life raft is a compass. The time has come to find food and water."
+	locations[12] = new game_location(12, "Start", "You were on vacation in the South Pacific when your small cruise ship developed a mechanical failure and sunk! Only a few people survived along with your self. After floating in a life raft for two days you washed ashore on a deserted island. All you have in the life raft is a compass. The time has come to find food and water.")
 				
-	var message_2 = " " + " " + "Decide whether you want to travel North, South East or West. Choose wisely because the island is uncharted. If you get hurt no one coming to your rescue!"
-				
-	updateText(message_2);
-	updateText(message);
+	updateText(locations[12]);
+	
 }						
 function north_button_heart_of_island() { 
-	var message= "You are traveling into the heart of the island! Dense jungles, and dangerous terrian lays ahead.";
-	updateText(message);
-	gameLoc(NORTH);
+	locations[1] = new game_location(1, "Jungle");
+	locations[1].message = "You are traveling into the heart of the island! Dense jungles, and dangerous terrian lays ahead.";
+	updateText(locations[1]);
 	north_btn_visibility();	
 	score = score+5; 
 				    
 }
 function north_path() {  
-	var message_path = "You find a path which leads into the island....maybe you are not alone!";
-		updateText(message_path);		
-		gameLoc(NORTH);
-		north_btn_visibility();
-		score = score+5;		 	      
+	locations[2] = new game_location(2, "Path");
+	locations[2].message = "You find a path which leads into the island, a few feet away is a pile of rope....Take!";
+	updateText(locations[2]);		
+	north_btn_visibility();
+	score = score+5;
+		if (inventory_rope === true){
+			locations[2].message = "You are back at the path in to the island, the rope is gone...check your inventory!";
+			updateText(locations[3])
+		}		 	      
 }
 function north_mtn() {
-	var message_mtn  = "You are slowly climbing up a very large mountain, there was no other way.";
-		updateText(message_mtn);
-		gameLoc(NORTH);
-		north_btn_visibility();
-		score = score+5; 	      
+	locations[3] = new game_location( 3, "Mountain");
+	locations[3].message = "You are slowly climbing up a very large mountain, there was no other way.";
+	updateText(locations[3]);
+	north_btn_visibility();
+	score = score+5; 	      
 } 
 function north_cave() {					
-	var message_cave = "You are in a small cave! To the WEST is a backpack.";							
-		updateText(message_cave);
-		gameLoc(NORTH);
-		north_btn_visibility_cave(); 
-		score = score+5;
-}  		  	  
-function north_water(){
-	var message_water = "Finally you found water...drink up!";
-		gameLoc(NORTH);
-		score = score+5;
-}
-function north_raft(){
-	raft();
-	north_btn_visibility_raft();
-	gameLoc(NORTH);
+	locations[4] = new game_location( 4, "Cave"); 						
+	locations[4].message = "You are in a small cave! To the WEST is a backpack.";
+	updateText(locations[4]);
+	north_btn_visibility_cave(); 
 	score = score+5;
+}  		  	  
+function north_raft(){
+	locations[11] = new game_location( 11, "Raft")
+	locations[11].message = "You have found a life raft! Must have washed up onto the beach from your ship....Take";
+	updateText(locations[11])
+	//raft();
+	north_btn_visibility_raft();
+	score = score+5;
+		if (inventory_raft === true){
+			locations[11].message = "A raft used to be here, check your inventory!";
+			updateText(locations[11])
+		}
 }
-function east_button_down_beach() {	
-	var message = "East part of the beach near a cluster of palm trees. Looking NORTH you see an odd shape.";
-	updateText(message);
-	gameLoc(EAST);
+function east_button_down_beach() { 
+	locations[10] = new game_location( 10, "Palm Tree"); 
+	locations[10].message = "East part of the beach near a cluster of palm trees. Looking NORTH you see an odd shape.";
+	updateText(locations[10]);
 	east_btn_visibility();
 	score = score+5;  								
 }
-function south_button_ocean() { 
-	var message = "You turn around and walk back to the edge of the water, all you can see is the vast ocean with no boats in sight.";
-	updateText(message);
-	gameLoc(SOUTH);
+function south_button_ocean() {  
+	locations[0] = new game_location( 0, "Beach");
+	locations[0].message = "You turn around and walk back to the edge of the water, all you can see is the vast ocean with no boats in sight.";
+	updateText(locations[0]);
 	south_btn_visibility();
 	score = score+5;    			    
 }
 function south_box(){
-	var message_box = "You open the box!";
-	updateText(message_box);
-	map();
+	locations[9] = new game_location( 9, "Package");
+	locations[9].message = "There is a package on the floor....Take!";
+	updateText(locations[9]);
+	//map();
 	south_btn_visibility_box();
-	gameLoc(SOUTH);
-	score = score+5;			 
+	score = score+5;
+		if (inventory_map === true){
+			locations[9].message = "The package is gone, check your inventory!";
+			updateText(locations[9])
+		}			 
 }
 function west_gunpowder() {
-	gunPowder();
+	locations[5] = new game_location( 5, "Backpack", "In the backpack is gunpowder!....Take");
+	updateText(locations[5]);
+	//gunPowder();
 	west_btn_visibility_gunpowder();
-	gameLoc(WEST);
 	score = score+5;
+		if (inventory_gunpowder === true){
+			locations[5].message = "The backpack is empty, check your inventory!";
+			updateText(locations[5])
+		}
 }							
 function west_button_beach() {	
-	var message = "After walking down the west side of the island you come across a run down shack.";
-	gameLoc(WEST); 
-	updateText(message);
-	west_btn_visibility()
+	locations[6] = new game_location( 6, "Shack");
+	locations[6].message = "After walking down the west side of the island you come across a run down shack.";
+	updateText(locations[6]);
+	west_btn_visibility();
 	score = score+5;
 }   				
 function west_door(){
-	var message_door = "You jiggle the door, push, and enter slowly.";
-	updateText(message_door);
-	gameLoc(WEST); 
+	locations[7] = new game_location( 7, "Shack Door");
+	locations[7].message = "You jiggle the door, push, and enter slowly.";
+	updateText(locations[7]);
 	west_btn_visibility_door();
 	score = score+5; 
 }
 function west_room(){
-	var message_room_west = "After your eyes adjust to the dim lighting you see a box on the SOUTH side of the room.";
-	updateText(message_room_west);
+	locations[8] = new game_location( 8, "Room");
+	locations[8].message = "After your eyes adjust to the dim lighting you see a box on the SOUTH side of the room.";
+	updateText(locations[8]);
 	west_btn_visibility_room();
-	gameLoc(WEST);
 	score = score+5;
 }
 
-//Lets the player know what he/her has found throughout the game. Every function below the inventory function relate to an item that can be found throughout the game. Some are not used in project 3, but will be used in future versions. 
-
-function player_inventory() {
-	var message = "Inventory: ";
-	if (inventory_raft === true) { 
-		message = message + " " + "Raft";
-	}
-		if (inventory_gunpowder === true) { 
-			message = message + " " + "Gunpowder";
-		}
-			if (inventory_map	=== true) {
-			message = message + " " + "Map";
-			}
-				updateText(message);
-}
-function gunPowder() {
-	if(inventory_gunpowder === false){
-		updateText("In the backpack is gunpowder!....take gunpowder");
-		gameLoc(WEST);
-		updateText("You have gunpowder.")
-		gameLoc(WEST);
-		inventory_gunpowder = true;
-		score = score+5; 
-	}
-		else if (inventory_gunpowder === true){
-			updateText("You already have gunpowder!");
-			gameLoc(WEST)
-		}
-}
-function map() {
-	if(inventory_map === false){
-		updateText("You have found a map of the island!");
-		inventory_map = true;
-		score = score+5;
-	}
-		else if(inventory_map === true){
-				updateText("You already have found the map!");
-		}
-}
-function flaregun() {
-	if(inventory_flaregun === false){
-		updateText("You have a flare gun!");
-		inventory_flaregun = true;
-		score = score+5;
-	}
-}
-function rope() {
-	if(inventory_rope === false){
-		updateText("You have 100ft of rope!");
-		inventory_rope = true;
-		score = score+5;
-	}
-}
-function raft() {
-	if(inventory_raft === false){
-		updateText("You have found a life raft! Must have washed up onto the beach from your ship.");
-		inventory_raft = true;
-		score = score+5;
-		}
-			else if (inventory_raft === true){
-				updateText("You already have the raft!");
-			}
-}
 			
 //HELP from ---http://www.w3schools.com/jsref/prop_style_visibility.asp to hide the buttons
 function init_visibility() {  

@@ -23,24 +23,13 @@ November 6, 2012-->
     			P { text-align: center }
 		</style>
 		<script type="text/JavaScript" src= "project_5_Logic.js"></script>
-		<script type="text/JavaScript" src= "locations_project5.js"></script>		
+		<script type="text/JavaScript" src= "locations_project5.js"></script>
+		<script type="text/JavaScript" src= "prototype.js"></script>
+		<script type="text/JavaScript" src= "inventory.js"></script>
 		<script type="text/JavaScript"> 
+		
 			var score 		= 0;	//Score variable
 			var moveCount	= 0;
-			
-			var inventory_gunpowder 	= false;  //Items found in game
-			var inventory_map 			= false;
-			var	inventory_flaregun 		= false;
-			var inventory_rope			= false;
-			var inventory_raft			= false;
-			 	
-			var game_inventory			= false; 
-			
-				
-			var NORTH 		= 1;	//Global varialbes to figure out dirrection 
-			var SOUTH 		= 2;
-			var EAST  		= 3;
-			var WEST  		= 4;
 			 
 			var north = 0; //globals for switch-case
 			var south = 1;
@@ -53,7 +42,6 @@ November 6, 2012-->
 			//var direction = 0
 			 
 			function updateText(message){//Updates text area
-				message = message + " [" + area + "]";
 				var ta = document.getElementById("txtGame");
            		ta.value = message + "\n" + ta.value;
         	}
@@ -67,20 +55,20 @@ November 6, 2012-->
 	<body onload = "init();">
 		<h1>Mystery Island</h1>
 		<textarea cols="70" rows="11" id = "txtGame" ></textarea>
-		<textarea class = "displayed" id = "txtLocation"></textarea> 
 		<br>
 		<p>Enter Command</p>
 		<input class = "align-center" type= "button"
 				value = "Inventory"
-				onclick= "player_inventory();">
+				onclick= "displayInventory();">
 		<br>
 		<input type= "button"
 				value = "Score"
 				onclick= "btn_click_score();">
 		
-		<input  type= "text" id= "txtCommand">
+		<input  type= "text" id= "txtCommand" onkeypress="go_keypress(event)";>
 		
 		<input  type= "button"
+				id= "btnGo"
 				value= "Go"
 				onclick= "btn_go_click();">
 		<br>

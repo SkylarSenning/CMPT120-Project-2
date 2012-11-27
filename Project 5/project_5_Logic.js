@@ -1,36 +1,41 @@
-function btn_go_click() { //IF-ELSE to figure out user input 
-	var txt	= document.getElementById("txtCommand");
-							
-	if ((txt.value === "N") || (txt.value === "n")) {
-		move(north);
+function go_keypress(e){
+        // Check for the ENTER key (ASCII code 13). 
+	if (e.which === 13) {
+		document.getElementById("btnGo").onclick();
 	}
-	else if ((txt.value === "S") || (txt.value === "s")){ 
-		move(south);
-	}
-	else if ((txt.value === "E") || (txt.value === "e")){
-		move(east);
-	}
-	else if ((txt.value === "W") || (txt.value === "w")){
-		move(west);
-	}
-	else if ((txt.value === "Help") || (txt.value === "help")){
-		game_help();
-	}
-	else if ((txt.value === "inventory") || (txt.value === "Inventory")){
-		player_inventory();
-	} 
-	else {
-	updateText("Please enter a valid command: N, S, E, W, n, s, e, w, inventory, Inventory"); 
-	}
-}				
+}
+
+function btn_go_click(){
+	var playerinput = document.getElementById("txtCommand"); 
+    	switch (playerinput.value){
+        	case "N": move(north); break;     
+          	case "n": move(north); break;     
+          	case "E": move(east);  break;  
+          	case "e": move(east);  break;  
+          	case "S": move(south); break;  
+         	case "s": move(south); break;  
+         	case "W": move(west);  break;  
+          	case "w": move(west);  break;  
+          	//case "Take": Take();   break;
+          	case "Help": game_help();   break;
+          	case "Inventory": displayInventory(); break;
+			case "inventory": displayInventory(); break;
+			case "Take": take_item(); break;
+			case "take": take_item(); break;
+          	default: "Possible commands: N, S, E, W, n, s, e, w, inventory, Inventory"; break;         
+          }
+}
+	
 function game_help() {
 	var message = "Possible commands: N, S, E, W, n, s, e, w, inventory, Inventory";
 	updateText(message); 
 }
 
+//allows you to program one way passages into your game now!!! WINN
+//This matrix removed pages and pages of switch-case..it handles which way the player can travel in the game, and is a life saver. 
 
 var nav = [ 			  /*N   S   E   W*/
-					/*0*/ [  1, -1,  10,  6],       //allows you to program one way passages into your game now!!! WINN
+					/*0*/ [  1, -1,  10,  6],       
 					/*1*/ [  2,  0,  -1, -1],
 					/*2*/ [  3,  0,  -1, -1],
 					/*3*/ [  4,  0,  -1, -1],
@@ -59,7 +64,7 @@ function move(direction){
 		} else {
 			updateText("You cannot go this way");
 		}
-		 
+		updateText("Moves:" + moveCount); 
 	}
 
 
@@ -83,18 +88,3 @@ function location_switch() {
 		}
 }
 
-
-function gameLoc(path) { //Location from lab to track users game location
-	if (path === 1) {
-    	updateLocation("Heading North");
-    } else if (path === 2) {
-     	updateLocation("Heading South");          
-    } else if (path === 3) {
-        updateLocation("Heading East");
-	} else if (path === 4) {
-		updateLocation("Heading West"); 
-	} else { 
-		updateLocation("NOT A VALID PATH! GO BACK!");
-	}
-}
-				
