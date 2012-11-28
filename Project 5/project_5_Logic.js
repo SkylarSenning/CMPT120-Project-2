@@ -1,3 +1,16 @@
+//
+///logic.js
+//
+var area 		= 12;	//start a location 12
+var score 		= 0;	//Score variable
+var moveCount	= 0;	//move counter set to zero 
+
+var north = 0; //globals for switch-case
+var south = 1;
+var east  = 2; 
+var west  = 3; 
+
+//allows the player to use the enter key to play the game
 function go_keypress(e){
         // Check for the ENTER key (ASCII code 13). 
 	if (e.which === 13) {
@@ -5,34 +18,44 @@ function go_keypress(e){
 	}
 }
 
+//switch-case for user input
+
 function btn_go_click(){
 	var playerinput = document.getElementById("txtCommand"); 
     	switch (playerinput.value){
-        	case "N": move(north); break;     
-          	case "n": move(north); break;     
-          	case "E": move(east);  break;  
-          	case "e": move(east);  break;  
-          	case "S": move(south); break;  
-         	case "s": move(south); break;  
-         	case "W": move(west);  break;  
-          	case "w": move(west);  break;  
-          	//case "Take": Take();   break;
-          	case "Help": game_help();   break;
-          	case "Inventory": displayInventory(); break;
-			case "inventory": displayInventory(); break;
-			case "Take": take_item(); break;
-			case "take": take_item(); break;
-          	default: "Possible commands: N, S, E, W, n, s, e, w, inventory, Inventory"; break;         
+        	case "N"			: move(north); 			break;     
+          	case "n"			: move(north); 			break;     
+          	case "E"			: move(east);  			break;  
+          	case "e"			: move(east);  			break;  
+          	case "S"			: move(south); 			break;  
+         	case "s"			: move(south); 			break;  
+         	case "W"			: move(west);  			break;  
+          	case "w"			: move(west);  			break;  
+          	case "Help"			: game_help();   		break;
+          	case "Inventory"	: displayInventory(); 	break;
+			case "inventory"	: displayInventory(); 	break;
+			case "Take"			: take_item(); 			break;
+			case "take"			: take_item(); 			break;
+          	default: updateText("Possible commands: N, S, E, W, n, s, e, w, inventory, Inventory, take, Take, Help"); break;         
           }
 }
 	
 function game_help() {
-	var message = "Possible commands: N, S, E, W, n, s, e, w, inventory, Inventory";
-	updateText(message); 
+	updateText("---HELP CENTER----"
+				+ "\n"
+				+ "Possible commands:" 
+				+ "\n"
+				+ "N, S, E, W, n, s, e, w," 
+				+ "\n"
+				+ "inventory, Inventory," 
+				+ "\n"
+				+ "take, Take");
+	 
 }
 
 //allows you to program one way passages into your game now!!! WINN
 //This matrix removed pages and pages of switch-case..it handles which way the player can travel in the game, and is a life saver. 
+
 
 var nav = [ 			  /*N   S   E   W*/
 					/*0*/ [  1, -1,  10,  6],       
@@ -49,12 +72,8 @@ var nav = [ 			  /*N   S   E   W*/
 					/*11*/[ -1, 10,  -1,  1],
 					/*12*/[  1,  0,  -1, -1]			
 		 ];
-function displayArray(array2Display){
-		for (var i = 0; i < array2Display.length; ++i){
-			updateText( i + ":" + array2Display[i]);
-		}
-	}
 
+//move function that takes the player's location and direction and switches the location
 function move(direction){
 		moveCount = moveCount + 1;
 		var newLocation = nav[area][direction];
@@ -67,7 +86,7 @@ function move(direction){
 		updateText("Moves:" + moveCount); 
 	}
 
-
+//switch-case for the locations....used in the matrix
 function location_switch() {
 	switch(area) {
     	case 1		: north_button_heart_of_island(); 	break;

@@ -15,18 +15,18 @@ function init(){  //on load this brings up the start text..
 var locations = new Array();
 
 function start(){
-	locations[12] = new game_location(12, "Start", "You were on vacation in the South Pacific when your small cruise ship developed a mechanical failure and sunk! Only a few people survived along with your self. After floating in a life raft for two days you washed ashore on a deserted island. All you have in the life raft is a compass. The time has come to find food and water.")
-				
+	locations[12] = new game_location(12, "Start", "You were on vacation in the South Pacific when your small cruise ship developed a mechanical failure and sunk! Only a few people survived along with your self. After floating in a life raft for two days you washed ashore on a deserted island. All you have in the life raft is a compass. The time has come to find food and water."
+	+ "\n"
+	+ "\n"
+	+"Type Help to bring up the HELP CENTER");		
 	updateText(locations[12]);
-	
 }						
 function north_button_heart_of_island() { 
 	locations[1] = new game_location(1, "Jungle");
 	locations[1].message = "You are traveling into the heart of the island! Dense jungles, and dangerous terrian lays ahead.";
 	updateText(locations[1]);
 	north_btn_visibility();	
-	score = score+5; 
-				    
+	score = score+5; 			    
 }
 function north_path() {  
 	locations[2] = new game_location(2, "Path");
@@ -36,7 +36,7 @@ function north_path() {
 	score = score+5;
 		if (inventory_rope === true){
 			locations[2].message = "You are back at the path in to the island, the rope is gone...check your inventory!";
-			updateText(locations[3])
+			updateText(locations[2])
 		}		 	      
 }
 function north_mtn() {
@@ -56,8 +56,7 @@ function north_cave() {
 function north_raft(){
 	locations[11] = new game_location( 11, "Raft")
 	locations[11].message = "You have found a life raft! Must have washed up onto the beach from your ship....Take";
-	updateText(locations[11])
-	//raft();
+	updateText(locations[11]);
 	north_btn_visibility_raft();
 	score = score+5;
 		if (inventory_raft === true){
@@ -83,7 +82,6 @@ function south_box(){
 	locations[9] = new game_location( 9, "Package");
 	locations[9].message = "There is a package on the floor....Take!";
 	updateText(locations[9]);
-	//map();
 	south_btn_visibility_box();
 	score = score+5;
 		if (inventory_map === true){
@@ -94,7 +92,6 @@ function south_box(){
 function west_gunpowder() {
 	locations[5] = new game_location( 5, "Backpack", "In the backpack is gunpowder!....Take");
 	updateText(locations[5]);
-	//gunPowder();
 	west_btn_visibility_gunpowder();
 	score = score+5;
 		if (inventory_gunpowder === true){

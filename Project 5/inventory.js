@@ -31,6 +31,9 @@ function displayInventory(){
 		updateText(inventory[1]);
 	}if (inventory_raft === true){
 		updateText(inventory[2]);
+	}if (inventory_rope === true){
+		updateText(inventory[3]);
+	}else{ updateText("Inventory:" + " " + "Nothing");
 	}
 }
 
@@ -43,9 +46,7 @@ function gunPowder() {
 		score = score+5; 
 	}
 		else if (inventory_gunpowder === true){
-			inventory[0].message = "Gunpowder already picked up"; 
-			inventory[0].item    = "None";  
-			updateText(inventory[0]); 
+			updateText("Gunpowder has alreay been taken!"); 
 			west_btn_visibility_gunpowder(); 
 		}
 }
@@ -56,9 +57,7 @@ function map() {
 		score = score+5;
 	}
 		else if(inventory_map === true){
-				inventory[1].message = "You already have found the map!"
-				inventory[1].item	   = "None" 
-				updateText(inventory[1]);
+				updateText("You already have found the map!");
 		}
 }
 function flaregun() {
@@ -75,9 +74,7 @@ function rope() {
 		score = score+5;
 	}
 		else if(inventory_rope === true){
-				inventory[3].message = "You already have found the rope!"
-				inventory[3].item	   = "None" 
-				updateText(inventory[3]);
+				updateText("You already have found the rope!");
 		}
 }
 function raft() {
@@ -87,9 +84,7 @@ function raft() {
 		score = score+5;
 		}
 			else if (inventory_raft === true){
-				inventory[2].message = "You already have the raft!";
-				inventory[2].item	= "None";
-				updateText(inventory[2]);
+				updateText("You already have the raft!");
 			}
 }
 

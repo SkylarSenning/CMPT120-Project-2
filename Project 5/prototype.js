@@ -1,6 +1,8 @@
 //prototype.js 
 //
- 
+
+// prototype from location and inventory that allows the programmer to create new instances of each prototype
+
 function game_location(_id, _location, _message) {
    this.id      		= _id;
    this.location     	= _location;
@@ -32,8 +34,7 @@ function gameInventory( _location, _message, _item){
    	}	
 }
 
-
-//north_1 = new game_location(1, "Jungle", "Message");			
+			
 	
 
 
