@@ -13,13 +13,13 @@ function init(){  //on load this brings up the start text..
 //The following functions have messages for all the locations in the game... The switch-case calls upon these function when you are at each of these locations in the game. I used to location prototype to create 13 different instances of location. all the locations are stored in the locations array 
 
 var locations = new Array();
-
-
-function start(){
 	locations[13] = new game_location(13, "Start", "You were on vacation in the South Pacific when your small cruise ship developed a mechanical failure and sunk! Only a few people survived along with your self. After floating in a life raft for two days you washed ashore on a deserted island. All you have in the life raft is a compass. The time has come to find food, water, and items for escape."
 	+ "\n"
 	+ "\n"
-	+"Type Help to bring up the HELP CENTER");		
+	+"Type Help to bring up the HELP CENTER");
+
+function start(){
+			
 	updateText(locations[13]);
 	updateText("Play again by entering: Restart");
 	
