@@ -113,7 +113,7 @@ function location_switch() {
 		case 7		: west_door(); 						break;
 		case 8		: west_room(); 						break;
 		case 12		: escape(); 						break;
-		case 13		: init(); 							break;
+		case 13		: init();  							break;
 		default:		updateText("Can't go this way. Try another direction...");
 			break;
 		}

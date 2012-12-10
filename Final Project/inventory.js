@@ -101,8 +101,12 @@ function assemble_raft(){
 		updateText(inventory[4]);
 		score = score+5;
 		moveCount = moveCount + 1;
+		assemble = true;
+	}else if(assemble === true){
+		updateText("You have already built the raft....Paddle...!");
+		moveCount = moveCount + 1;
 	}else {
-		updateText("You alreayd built the raft! Get in it and....Paddle..");
+		updateText("You cant build the raft yet!");
 		moveCount = moveCount + 1;
 	}
 }
